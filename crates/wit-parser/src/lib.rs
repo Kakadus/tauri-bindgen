@@ -222,7 +222,7 @@ impl FunctionResult {
         }
     }
     #[must_use]
-    pub fn types(&self) -> ResultsTypeIter {
+    pub fn types(&self) -> ResultsTypeIter<'_> {
         match self {
             FunctionResult::Named(ps) => ResultsTypeIter::Named(ps.iter()),
             FunctionResult::Anon(ty) => ResultsTypeIter::Anon(std::iter::once(ty)),

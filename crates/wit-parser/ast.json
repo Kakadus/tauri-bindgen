@@ -1,13 +1,7 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Interface",
   "type": "object",
-  "required": [
-    "docs",
-    "functions",
-    "ident",
-    "typedefs"
-  ],
   "properties": {
     "docs": {
       "type": "string"
@@ -15,7 +9,7 @@
     "functions": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/Function"
+        "$ref": "#/$defs/Function"
       }
     },
     "ident": {
@@ -24,17 +18,19 @@
     "typedefs": {
       "type": "array",
       "items": {
-        "$ref": "#/definitions/TypeDef"
+        "$ref": "#/$defs/TypeDef"
       }
     }
   },
-  "definitions": {
+  "required": [
+    "docs",
+    "ident",
+    "typedefs",
+    "functions"
+  ],
+  "$defs": {
     "EnumCase": {
       "type": "object",
-      "required": [
-        "docs",
-        "id"
-      ],
       "properties": {
         "docs": {
           "type": "string"
@@ -42,14 +38,14 @@
         "id": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "docs",
+        "id"
+      ]
     },
     "FlagsField": {
       "type": "object",
-      "required": [
-        "docs",
-        "id"
-      ],
       "properties": {
         "docs": {
           "type": "string"
@@ -57,15 +53,14 @@
         "id": {
           "type": "string"
         }
-      }
+      },
+      "required": [
+        "docs",
+        "id"
+      ]
     },
     "Function": {
       "type": "object",
-      "required": [
-        "docs",
-        "id",
-        "params"
-      ],
       "properties": {
         "docs": {
           "type": "string"
@@ -76,316 +71,284 @@
         "params": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/NamedType"
+            "$ref": "#/$defs/NamedType"
           }
         },
         "result": {
           "anyOf": [
             {
-              "$ref": "#/definitions/FunctionResult"
+              "$ref": "#/$defs/FunctionResult"
             },
             {
               "type": "null"
             }
           ]
         }
-      }
+      },
+      "required": [
+        "docs",
+        "id",
+        "params"
+      ]
     },
     "FunctionResult": {
       "anyOf": [
         {
-          "$ref": "#/definitions/Type"
+          "$ref": "#/$defs/Type"
         },
         {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/NamedType"
+            "$ref": "#/$defs/NamedType"
           }
         }
       ]
     },
     "NamedType": {
       "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
       "oneOf": [
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "bool"
-              ]
+              "const": "bool"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "u8"
-              ]
+              "const": "u8"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "u16"
-              ]
+              "const": "u16"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "u32"
-              ]
+              "const": "u32"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "u64"
-              ]
+              "const": "u64"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "u128"
-              ]
+              "const": "u128"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "s8"
-              ]
+              "const": "s8"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "s16"
-              ]
+              "const": "s16"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "s32"
-              ]
+              "const": "s32"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "s64"
-              ]
+              "const": "s64"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "s128"
-              ]
+              "const": "s128"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "float32"
-              ]
+              "const": "float32"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "float64"
-              ]
+              "const": "float64"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "char"
-              ]
+              "const": "char"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "string"
-              ]
+              "const": "string"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type",
-            "value"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "list"
-              ]
+              "const": "list"
             },
             "value": {
-              "$ref": "#/definitions/Type"
+              "$ref": "#/$defs/Type"
             }
-          }
-        },
-        {
-          "type": "object",
+          },
           "required": [
             "type",
             "value"
-          ],
+          ]
+        },
+        {
+          "type": "object",
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "tuple"
-              ]
+              "const": "tuple"
             },
             "value": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Type"
+                "$ref": "#/$defs/Type"
               }
             }
-          }
-        },
-        {
-          "type": "object",
+          },
           "required": [
             "type",
             "value"
-          ],
+          ]
+        },
+        {
+          "type": "object",
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "option"
-              ]
+              "const": "option"
             },
             "value": {
-              "$ref": "#/definitions/Type"
+              "$ref": "#/$defs/Type"
             }
-          }
-        },
-        {
-          "type": "object",
+          },
           "required": [
             "type",
             "value"
-          ],
+          ]
+        },
+        {
+          "type": "object",
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "result"
-              ]
+              "const": "result"
             },
             "value": {
               "type": "object",
@@ -393,7 +356,7 @@
                 "err": {
                   "anyOf": [
                     {
-                      "$ref": "#/definitions/Type"
+                      "$ref": "#/$defs/Type"
                     },
                     {
                       "type": "null"
@@ -403,7 +366,7 @@
                 "ok": {
                   "anyOf": [
                     {
-                      "$ref": "#/definitions/Type"
+                      "$ref": "#/$defs/Type"
                     },
                     {
                       "type": "null"
@@ -412,45 +375,37 @@
                 }
               }
             }
-          }
-        },
-        {
-          "type": "object",
+          },
           "required": [
             "type",
             "value"
-          ],
+          ]
+        },
+        {
+          "type": "object",
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "id"
-              ]
+              "const": "id"
             },
             "value": {
               "type": "integer",
               "format": "uint32",
-              "minimum": 0.0
+              "minimum": 0
             }
-          }
+          },
+          "required": [
+            "type",
+            "value"
+          ]
         }
       ],
       "required": [
         "id"
-      ],
-      "properties": {
-        "id": {
-          "type": "string"
-        }
-      }
+      ]
     },
     "RecordField": {
       "type": "object",
-      "required": [
-        "docs",
-        "id",
-        "ty"
-      ],
       "properties": {
         "docs": {
           "type": "string"
@@ -459,291 +414,254 @@
           "type": "string"
         },
         "ty": {
-          "$ref": "#/definitions/Type"
+          "$ref": "#/$defs/Type"
         }
-      }
+      },
+      "required": [
+        "docs",
+        "id",
+        "ty"
+      ]
     },
     "Type": {
       "oneOf": [
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "bool"
-              ]
+              "const": "bool"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "u8"
-              ]
+              "const": "u8"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "u16"
-              ]
+              "const": "u16"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "u32"
-              ]
+              "const": "u32"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "u64"
-              ]
+              "const": "u64"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "u128"
-              ]
+              "const": "u128"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "s8"
-              ]
+              "const": "s8"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "s16"
-              ]
+              "const": "s16"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "s32"
-              ]
+              "const": "s32"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "s64"
-              ]
+              "const": "s64"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "s128"
-              ]
+              "const": "s128"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "float32"
-              ]
+              "const": "float32"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "float64"
-              ]
+              "const": "float64"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "char"
-              ]
+              "const": "char"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "string"
-              ]
+              "const": "string"
             }
-          }
+          },
+          "required": [
+            "type"
+          ]
         },
         {
           "type": "object",
-          "required": [
-            "type",
-            "value"
-          ],
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "list"
-              ]
+              "const": "list"
             },
             "value": {
-              "$ref": "#/definitions/Type"
+              "$ref": "#/$defs/Type"
             }
-          }
-        },
-        {
-          "type": "object",
+          },
           "required": [
             "type",
             "value"
-          ],
+          ]
+        },
+        {
+          "type": "object",
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "tuple"
-              ]
+              "const": "tuple"
             },
             "value": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Type"
+                "$ref": "#/$defs/Type"
               }
             }
-          }
-        },
-        {
-          "type": "object",
+          },
           "required": [
             "type",
             "value"
-          ],
+          ]
+        },
+        {
+          "type": "object",
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "option"
-              ]
+              "const": "option"
             },
             "value": {
-              "$ref": "#/definitions/Type"
+              "$ref": "#/$defs/Type"
             }
-          }
-        },
-        {
-          "type": "object",
+          },
           "required": [
             "type",
             "value"
-          ],
+          ]
+        },
+        {
+          "type": "object",
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "result"
-              ]
+              "const": "result"
             },
             "value": {
               "type": "object",
@@ -751,7 +669,7 @@
                 "err": {
                   "anyOf": [
                     {
-                      "$ref": "#/definitions/Type"
+                      "$ref": "#/$defs/Type"
                     },
                     {
                       "type": "null"
@@ -761,7 +679,7 @@
                 "ok": {
                   "anyOf": [
                     {
-                      "$ref": "#/definitions/Type"
+                      "$ref": "#/$defs/Type"
                     },
                     {
                       "type": "null"
@@ -770,182 +688,34 @@
                 }
               }
             }
-          }
-        },
-        {
-          "type": "object",
+          },
           "required": [
             "type",
             "value"
-          ],
+          ]
+        },
+        {
+          "type": "object",
           "properties": {
             "type": {
               "type": "string",
-              "enum": [
-                "id"
-              ]
+              "const": "id"
             },
             "value": {
               "type": "integer",
               "format": "uint32",
-              "minimum": 0.0
+              "minimum": 0
             }
-          }
+          },
+          "required": [
+            "type",
+            "value"
+          ]
         }
       ]
     },
     "TypeDef": {
       "type": "object",
-      "oneOf": [
-        {
-          "type": "object",
-          "required": [
-            "type",
-            "value"
-          ],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "alias"
-              ]
-            },
-            "value": {
-              "$ref": "#/definitions/Type"
-            }
-          }
-        },
-        {
-          "type": "object",
-          "required": [
-            "type",
-            "value"
-          ],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "record"
-              ]
-            },
-            "value": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/RecordField"
-              }
-            }
-          }
-        },
-        {
-          "type": "object",
-          "required": [
-            "type",
-            "value"
-          ],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "flags"
-              ]
-            },
-            "value": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/FlagsField"
-              }
-            }
-          }
-        },
-        {
-          "type": "object",
-          "required": [
-            "type",
-            "value"
-          ],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "variant"
-              ]
-            },
-            "value": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/VariantCase"
-              }
-            }
-          }
-        },
-        {
-          "type": "object",
-          "required": [
-            "type",
-            "value"
-          ],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "enum"
-              ]
-            },
-            "value": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/EnumCase"
-              }
-            }
-          }
-        },
-        {
-          "type": "object",
-          "required": [
-            "type",
-            "value"
-          ],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "union"
-              ]
-            },
-            "value": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/UnionCase"
-              }
-            }
-          }
-        },
-        {
-          "type": "object",
-          "required": [
-            "type",
-            "value"
-          ],
-          "properties": {
-            "type": {
-              "type": "string",
-              "enum": [
-                "resource"
-              ]
-            },
-            "value": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Function"
-              }
-            }
-          }
-        }
-      ],
-      "required": [
-        "docs",
-        "ident"
-      ],
       "properties": {
         "docs": {
           "type": "string"
@@ -953,29 +723,161 @@
         "ident": {
           "type": "string"
         }
-      }
+      },
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "alias"
+            },
+            "value": {
+              "$ref": "#/$defs/Type"
+            }
+          },
+          "required": [
+            "type",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "record"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/RecordField"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "flags"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/FlagsField"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "variant"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/VariantCase"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "enum"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/EnumCase"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "union"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/UnionCase"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "value"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "const": "resource"
+            },
+            "value": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Function"
+              }
+            }
+          },
+          "required": [
+            "type",
+            "value"
+          ]
+        }
+      ],
+      "required": [
+        "docs",
+        "ident"
+      ]
     },
     "UnionCase": {
       "type": "object",
-      "required": [
-        "docs",
-        "ty"
-      ],
       "properties": {
         "docs": {
           "type": "string"
         },
         "ty": {
-          "$ref": "#/definitions/Type"
+          "$ref": "#/$defs/Type"
         }
-      }
+      },
+      "required": [
+        "docs",
+        "ty"
+      ]
     },
     "VariantCase": {
       "type": "object",
-      "required": [
-        "docs",
-        "id"
-      ],
       "properties": {
         "docs": {
           "type": "string"
@@ -986,14 +888,18 @@
         "ty": {
           "anyOf": [
             {
-              "$ref": "#/definitions/Type"
+              "$ref": "#/$defs/Type"
             },
             {
               "type": "null"
             }
           ]
         }
-      }
+      },
+      "required": [
+        "docs",
+        "id"
+      ]
     }
   }
 }

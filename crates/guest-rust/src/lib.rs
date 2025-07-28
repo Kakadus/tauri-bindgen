@@ -30,13 +30,13 @@ where
     P: Serialize,
     R: DeserializeOwned,
 {
-    let mut opts = RequestInit::new();
-    opts.method("POST");
-    opts.mode(RequestMode::Cors);
+    let opts = RequestInit::new();
+    opts.set_method("POST");
+    opts.set_mode(RequestMode::Cors);
 
     let bytes = postcard::to_allocvec(val)?;
     let body = unsafe { Uint8Array::view(&bytes) };
-    opts.body(Some(&body));
+    opts.set_body(&body);
 
     let url = format!("ipc://localhost/{module}/{method}");
 

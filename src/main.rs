@@ -115,7 +115,7 @@ struct Common {
 // A thin wrapper around `run` so we can pretty-print the error
 fn main() {
     if let Err(err) = run() {
-        log::error!("{:?}", err);
+        log::error!("{err:?}");
     }
 }
 

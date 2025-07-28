@@ -41,12 +41,7 @@ pub trait RustGenerator {
             for TypeVariant { ident, borrow_mode } in variants {
                 let docs = &typedef.docs;
 
-                log::debug!(
-                    "generating {:?} with mode info {:?} and mode {:?}",
-                    ident,
-                    info,
-                    mode
-                );
+                log::debug!("generating {ident:?} with mode info {info:?} and mode {mode:?}",);
 
                 let typedef = match &typedef.kind {
                     TypeDefKind::Alias(ty) => {

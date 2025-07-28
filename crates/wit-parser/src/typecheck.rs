@@ -271,9 +271,7 @@ impl<'a> Resolver<'a> {
 
                 Ok((ident, ty))
             })
-            .transponse_result::<Vec<_>, _>()
-            .map_err(Into::into)
-    }
+            .transponse_result::<Vec<_>, _>()}
 
     fn resolve_func(
         &mut self,

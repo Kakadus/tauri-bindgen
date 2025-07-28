@@ -1,4 +1,4 @@
-use env_logger::fmt::Color;
+use env_logger::fmt::style::{AnsiColor, Color};
 use log::{log_enabled, Level};
 use std::io::Write;
 
@@ -14,27 +14,43 @@ pub fn init(verbosity: u8) {
                 let action = action.to_string();
                 is_command_output = action == "stdout" || action == "stderr";
                 if !is_command_output {
-                    let mut action_style = f.style();
-                    action_style.set_color(Color::Green).set_bold(true);
+                    let action_style = f
+                        .default_level_style(Level::Info)
+                        .fg_color(Some(Color::Ansi(AnsiColor::Green)))
+                        .bold();
 
-                    write!(f, "{:>12} ", action_style.value(action))?;
+                    write!(
+                        f,
+                        "{}{:>12}{} ",
+                        action_style.render(),
+                        action,
+                        action_style.render_reset()
+                    )?;
                 }
             } else {
-                let mut level_style = f.default_level_style(record.level());
-                level_style.set_bold(true);
+                let level_style = f.default_level_style(record.level()).bold();
 
                 write!(
                     f,
-                    "{:>12} ",
-                    level_style.value(prettyprint_level(record.level()))
+                    "{}{:>12}{} ",
+                    level_style.render(),
+                    prettyprint_level(record.level()),
+                    level_style.render_reset()
                 )?;
             }
 
             if !is_command_output && log_enabled!(Level::Debug) {
-                let mut target_style = f.style();
-                target_style.set_color(Color::Black);
+                let target_style = f
+                    .default_level_style(Level::Debug)
+                    .fg_color(Some(Color::Ansi(AnsiColor::Black)));
 
-                write!(f, "[{}] ", target_style.value(record.target()))?;
+                write!(
+                    f,
+                    "[{}{}{}] ",
+                    target_style.render(),
+                    record.target(),
+                    target_style.render_reset()
+                )?;
             }
 
             writeln!(f, "{}", record.args())
