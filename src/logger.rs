@@ -11,7 +11,7 @@ pub fn init(verbosity: u8) {
         .format(|f, record| {
             let mut is_command_output = false;
             if let Some(action) = record.key_values().get("action".into()) {
-                let action = action.to_str().unwrap();
+                let action = action.to_string();
                 is_command_output = action == "stdout" || action == "stderr";
                 if !is_command_output {
                     let mut action_style = f.style();
